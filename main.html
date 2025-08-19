@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>試煉B</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Agu+Display&family=Bytesized&family=Cactus+Classical+Serif&family=Silkscreen:wght@400;700&display=swap');
+    </style>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="main-menu">
+        <div class="top-bar">
+            <div class="avatar-name">
+                <div class="avatar"><img src="src/icon.png" alt="Avatar"></div>
+                <div class="player-name">Adventurer</div>
+            </div>
+            <div class="storyline-title">Storyline</div>
+        </div>
+        <div class="chapter-row" id="chapterRow">
+            <!-- 按鈕將由 JavaScript 動態生成 -->
+        </div>
+        <div class="bottom-bar">
+            <button class="circle-btn mail-btn"><img src="src/mail.png" alt="Mail"><span class="mail-badge" id="mailBadge"></span></button>
+            <button class="circle-btn task-btn"><img src="src/task.png" alt="Task"><span class="task-badge" id="taskBadge"></span></button>
+            <div class="content-box"></div>
+        </div>
+    </div>
+    <script>
+        // 控制各章節上鎖狀態的變數
+        const ch2Unlocked = localStorage.getItem('ch2Unlocked') === 'true';
+        const ch2Locked = !ch2Unlocked;  // ch2Unlocked 為 true 時解鎖
+        const B1_done = localStorage.getItem('B1_done') === 'true';
+        const B2_done = localStorage.getItem('B2_done') === 'true';
+        const B3_done = localStorage.getItem('B3_done') === 'true';
+        const B4_done = localStorage.getItem('B4_done') === 'true';
+        const ch3Unlocked = B1_done && B2_done;
+        const ch3Locked = !ch3Unlocked;  // 只有兩題都完成才解鎖
+        // CH4 需完成 B3 與 B4 才解鎖
+        const ch4Unlocked = B3_done && B4_done;
+        const ch4Locked = !ch4Unlocked;
+
+        // 動態生成章節按鈕
+        const chapterRow = document.getElementById('chapterRow');
+        const chapterConfigs = [
+            { ch: 1, locked: false },
+            { ch: 2, locked: ch2Locked },
+            { ch: 3, locked: ch3Locked },
+            { ch: 4, locked: ch4Locked }
+        ];
+
+        chapterConfigs.forEach(config => {
+            const button = document.createElement('button');
+            button.className = `chapter-btn${config.locked ? ' lock' : ''}`;
+            button.setAttribute('data-ch', config.ch);
+
+            const img = document.createElement('img');
+            if (config.locked) {
+                img.src = 'src/lock.png';
+                img.alt = 'Lock';
+            } else {
+                img.src = `src/ch${config.ch}.png`;
+                img.alt = `CH${config.ch}`;
+            }
+
+            button.appendChild(img);
+            chapterRow.appendChild(button);
+            
+            // 為未上鎖的按鈕添加點擊事件
+            if (!config.locked) {
+                button.addEventListener('click', function() {
+                    // 根據章節編號跳轉到對應的頁面
+                    switch(config.ch) {
+                        case 1:
+                            window.location.href = 'Ch1.html';
+                            break;
+                        case 2:
+                            window.location.href = 'Ch2.html';
+                            break;
+                        case 3:
+                            // window.location.href = 'Ch3.html';
+                            window.location.href = 'Ch3.html';
+                            break;
+                        case 4:
+                            // window.location.href = 'Ch4.html';
+                            window.location.href = 'Ch4.html';
+                            break;
+                        
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html> 

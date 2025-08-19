@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>試煉B</title>
+    <link rel="stylesheet" href="css/B4.css">
+</head>
+<body>
+    <div class="container">
+        <button class="prev-btn" id="prevBtn" title="回任務頁面">
+            <img src="src/prev.png" alt="Prev" width="48" height="48">
+        </button>
+        <h1>The value is...</h1>
+        
+        <div class="input-section">
+            <div class="input-controls">
+                <div class="input-wrapper">
+                    <input type="text" id="virtual-input" placeholder="" readonly>
+                    <div class="cursor" id="cursor"></div>
+                </div>
+                <button id="clear-btn" class="control-btn">Clear</button>
+                <button id="submit-btn" class="control-btn submit-btn">Submit</button>
+            </div>
+        </div>
+
+        <div class="keyboard-container">
+            <div class="keyboard">
+                <div class="keyboard-layout">
+                    <!-- 數字鍵盤 -->
+                    <div class="number-keyboard">
+                        <div class="keyboard-row">
+                            <button class="key" data-key="1">1</button>
+                            <button class="key" data-key="2">2</button>
+                            <button class="key" data-key="3">3</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key" data-key="4">4</button>
+                            <button class="key" data-key="5">5</button>
+                            <button class="key" data-key="6">6</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key" data-key="7">7</button>
+                            <button class="key" data-key="8">8</button>
+                            <button class="key" data-key="9">9</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key" data-key="0">0</button>
+                            <button class="key" data-key=".">.</button>
+                            <button class="key backspace-key" id="backspace-key">←</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <!-- 成功提示窗 -->
+        <div class="success-modal" id="success-modal">
+            <div class="success-content">
+                <div class="success-icon">🎉</div>
+                <div class="success-title">Correct！</div>
+                <div class="success-message">已完成此任務。</div>
+                <button class="success-btn" id="close-success">Ok</button>
+            </div>
+        </div>
+
+        <!-- 失敗提示窗 -->
+        <div class="error-modal" id="error-modal">
+            <div class="error-content">
+                <div class="error-icon">❌</div>
+                <div class="error-title">Wrong！</div>
+                <div class="error-message">不能有多餘的空格或字符。</div>
+                <button class="error-btn" id="close-error">Retry</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/B4.js"></script>
+</body>
+</html> 
