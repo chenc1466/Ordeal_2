@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'NostalgicDot';
+    src: url('../src/Nosutaru-dotMPlusH-10-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: url('../src/prev_bg.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.center-btn {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    padding: 20px 60px;
+    border: none;
+    background: rgba(255,255,255,0.85);
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    transition: background 0.2s, transform 0.2s;
+    font-family: 'NostalgicDot', system-ui;
+}
+.center-btn:hover {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f0f0f0;
+    color: #000;
+    border: 3px solid #000;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+} 

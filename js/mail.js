@@ -27,7 +27,7 @@ const mails = [
     {
         id: 4,
         title: '新手教學三',
-        body: '已解鎖 任務 功能。\n提示：完成任務可解鎖相對應劇情或碎片。',
+        body: '已解鎖 任務 功能。\n提示：完成任務可解鎖相對應劇情。',
         hidden: true,
         read: false
     }

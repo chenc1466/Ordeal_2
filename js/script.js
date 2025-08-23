@@ -11,8 +11,9 @@ document.getElementById('go-main').addEventListener('click', function() {
     // 上鎖所有任務
     ['B1','B2','B3','B4','B5','B6'].forEach(k => localStorage.setItem(k+'_unlocked', 'false'));
     ['B1','B2','B3','B4','B5','B6'].forEach(k => localStorage.setItem(k+'_done', 'false'));
-    // 上鎖Ch2-Ch5
-    ['ch2Unlocked','ch3Unlocked','ch4Unlocked','ch5Unlocked'].forEach(k => localStorage.setItem(k, 'false'));
+    ['B1Cleared','B2Cleared','B3Cleared','B4Cleared','B5Cleared','B6Cleared'].forEach(k => localStorage.removeItem(k));
+    // 上鎖Ch2-Ch4
+    ['ch2Unlocked','ch3Unlocked','ch4Unlocked'].forEach(k => localStorage.setItem(k, 'false'));
     window.location.href = 'mail.html';
 }); 
 

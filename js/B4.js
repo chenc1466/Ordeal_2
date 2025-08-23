@@ -314,8 +314,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
         
         // 檢查是否完全等於"LIKE"（不能有多餘空格或字符）
-        if (inputValue === '0.774') {
+        if (inputValue === '0.739') {
             // 顯示成功提示窗
+            localStorage.setItem('B4Cleared', 'true');
             successModal.classList.add('show');
             // 這裡不再寫入 ch2Unlocked
         } else {

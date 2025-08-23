@@ -1,0 +1,526 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap');
+
+@font-face {
+    font-family: 'NostalgicDot';
+    src: url('../src/Nosutaru-dotMPlusH-10-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bitcount Grid Double', 'NostalgicDot', system-ui;
+    font-size: 1.5em;
+    background: #aaa;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    position: relative;
+    background: #666;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 1500px;
+    width: 90%;
+    /* 不設高度，讓內容自動決定高度 */
+}
+
+.prev-btn {
+    position: absolute;
+    top: 10%;
+    left: 1%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 100;
+    transition: transform 0.2s ease;
+}
+
+.prev-btn:hover {
+    transform: scale(1.1);
+}
+
+.prev-btn img {
+    width: 48px;
+    height: 48px;
+    transition: filter 0.2s ease;
+}
+
+.prev-btn:hover img {
+    content: url('../src/prev_hover.png');
+}
+
+/* 移除所有便條紙相關設定，恢復純白背景、標準圓角、陰影 */
+
+.keyboard-container {
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: 400;
+}
+
+.input-section {
+    margin-bottom: 40px;
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+#virtual-input {
+    width: 100%;
+    height: 48px;
+    box-sizing: border-box;
+    padding: 15px 20px;
+    font-size: 1.3em;
+    border: 2px solid #1a1a1a;
+    border-radius: 10px;
+    background-color: #292929;
+    color: #fff;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    position: relative;
+    caret-color: transparent;
+}
+
+.input-wrapper {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.cursor {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-80%);
+    width: 2px;
+    height: 0.8em;
+    background-color: #fff;
+    animation: blink 1s infinite;
+    pointer-events: none;
+    transition: left 0.1s ease;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+#virtual-input:focus {
+    outline: none;
+    border-color: #000;
+    background-color: #1a1a1a;
+    /*box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);*/
+}
+
+.input-controls {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    justify-content: center;
+}
+
+.control-btn {
+    height: 48px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 1.15em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+#clear-btn {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+#clear-btn:hover {
+    background-color: #ff5252;
+    transform: translateY(-2px);
+}
+
+#backspace-btn {
+    background-color: #4ecdc4;
+    color: white;
+}
+
+#backspace-btn:hover {
+    background-color: #26d0ce;
+    transform: translateY(-2px);
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+/* 成功提示窗樣式 */
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.success-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.success-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+    max-width: 400px;
+    width: 90%;
+}
+
+.success-modal.show .success-content {
+    transform: scale(1);
+}
+
+.success-icon {
+    font-size: 4em;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.success-title {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.success-message {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.success-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.success-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+/* 失敗提示窗樣式 */
+.error-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.error-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.error-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+    max-width: 400px;
+    width: 90%;
+}
+
+.error-modal.show .error-content {
+    transform: scale(1);
+}
+
+.error-icon {
+    font-size: 4em;
+    color: #f44336;
+    margin-bottom: 20px;
+}
+
+.error-title {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.error-message {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.error-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.error-btn:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+}
+
+.keyboard-container {
+    background: #666;
+    border-radius: 15px;
+    padding: 20px;
+    /*box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);*/
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.keyboard-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.letter-keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.keyboard-separator {
+    width: 2px;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, #666, transparent);
+    margin: 0 20px;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.key {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: 5px 5px 10px #d1d1d1, -1px -1px 10px #ffffff;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #333;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.key:hover {
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    transform: translateY(-2px);
+    box-shadow: 7px 7px 15px #d1d1d1, -1px -1px 15px #ffffff;
+}
+
+.key:active {
+    background: linear-gradient(145deg, #d1d1d1, #e6e6e6);
+    transform: translateY(0);
+    box-shadow: inset 3px 3px 6px #d1d1d1, inset -3px -3px 6px #ffffff;
+}
+
+.space-key {
+    width: 250px;
+    font-size: 1.2em;
+}
+
+.caps-key {
+    width: 200px;
+    font-size: 1.2em;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+}
+
+.caps-key.active {
+    background: linear-gradient(145deg, #667eea, #5a6fd8);
+    color: white;
+    box-shadow: inset 3px 3px 6px #4a5bc7, inset -3px -3px 6px #7a83ed;
+}
+
+.caps-key.active:hover {
+    background: linear-gradient(145deg, #5a6fd8, #667eea);
+}
+
+.enter-key {
+    width: 90px;
+}
+
+.backspace-key {
+    width: 200px;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .keyboard-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .keyboard-separator {
+        width: 100%;
+        height: 2px;
+        margin: 10px 0;
+    }
+    
+    .key {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+    
+    .space-key {
+        width: 150px;
+    }
+    
+    .caps-key {
+        width: 100px;
+    }
+    
+    .keyboard-row {
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .key {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9em;
+    }
+    
+    .space-key {
+        width: 120px;
+    }
+    
+    .caps-key {
+        width: 80px;
+    }
+    
+    #virtual-input {
+        font-size: 1em;
+        padding: 12px 15px;
+    }
+}
+
+#virtual-input,
+.key,
+.control-btn,
+.success-modal,
+.error-modal,
+.success-content,
+.error-content,
+.error-btn,
+.success-btn {
+    font-family: 'Bitcount Grid Double', system-ui !important;
+}
+
+.input-section,
+.keyboard-container {
+    position: relative;
+    z-index: 10;
+}
+
+.container > *:not(.memo-bg) {
+    position: relative;
+    z-index: 10;
+}
+
+.success-title,
+.success-message,
+.error-title,
+.error-message {
+    font-family: 'NostalgicDot', 'Bitcount Grid Double', system-ui;
+}
