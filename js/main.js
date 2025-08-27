@@ -95,7 +95,7 @@ chapterBtns.forEach(btn => {
 function updateTaskBadge() {
     const badge = document.getElementById('taskBadge');
     if (!badge) return;
-    const tasks = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6'];
+    const tasks = ['B1', 'B2', 'B3', 'B4', 'B6'];
     let count = 0;
     tasks.forEach(key => {
         if (localStorage.getItem(key + '_unlocked') === 'true' && localStorage.getItem(key + '_done') !== 'true') {
