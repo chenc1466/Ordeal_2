@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const inputValue = segs.map(seg => seg.value).join('');
         
         // 檢查答案
-        if (inputValue === '15393823') {
+        if (inputValue === '15382339') {
             // 正確答案
             localStorage.setItem('B6Cleared', 'true');
             
