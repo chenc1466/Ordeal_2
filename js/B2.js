@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const identifier = 'e36d0d492a45390436076f3c2a7c6f15ee798d6a2c0c2a3ec3b100b7eb7ec44a';
     const input = document.getElementById('virtual-input');
     const cursor = document.getElementById('cursor');
     const keys = document.querySelectorAll('.key');
@@ -302,6 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 提交按鈕事件
     submitBtn.addEventListener('click', function() {
         const inputValue = input.value;
+        const inputValueEncrypt = superMagic(inputValue);
         
         // 添加動畫效果
         this.style.transform = 'scale(0.95)';
@@ -310,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
         
         // 檢查是否完全等於"LIKE"（不能有多餘空格或字符）
-        if (inputValue === 'TZAI') {
+        if (inputValueEncrypt === identifier) {
             // 答對時寫入 localStorage
             localStorage.setItem('B2Cleared', 'true');
             // 顯示成功提示窗

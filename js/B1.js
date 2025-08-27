@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const identifier = '08352fcd94c7588b9e2f25def0ebc25af530dfd01a2d5a21deffab8aa6b9311e';
     const input = document.getElementById('virtual-input');
     const cursor = document.getElementById('cursor');
     const keys = document.querySelectorAll('.key');
@@ -302,15 +303,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // 提交按鈕事件
     submitBtn.addEventListener('click', function() {
         const inputValue = input.value;
-        
+        const inputValueEncrypt = superMagic(inputValue);
+
         // 添加動畫效果
         this.style.transform = 'scale(0.95)';
         setTimeout(() => {
             this.style.transform = '';
         }, 100);
         
-        // 檢查是否完全等於"ELLA"（不能有多餘空格或字符）
-        if (inputValue === 'ELLA') {
+        // 檢查是否完全等於"<answer>"（不能有多餘空格或字符）
+        if (inputValueEncrypt === identifier) {
             // 答對時寫入 localStorage
             localStorage.setItem('B1Cleared', 'true');
             // 顯示成功提示窗

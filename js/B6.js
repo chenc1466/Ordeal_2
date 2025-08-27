@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const identifier = 'e67b342674842ea2e4088b535a2cfc679db954b852ae149ec59f9d8fe6a5cddf';
     const segs = [
         document.getElementById('seg1'),
         document.getElementById('seg2'),
@@ -120,9 +121,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 獲取所有分段的輸入值
         const inputValue = segs.map(seg => seg.value).join('');
-        
+        const inputValueEncrypt = superMagic(inputValue);
+
         // 檢查答案
-        if (inputValue === '15382339') {
+        if (inputValueEncrypt === identifier) {
             // 正確答案
             localStorage.setItem('B6Cleared', 'true');
             

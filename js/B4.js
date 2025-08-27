@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const identifier = '6c45763c17ce954423d0ac35bb462f990ea8ad013e859dd41ad363b1ad8d693e';
     const input = document.getElementById('virtual-input');
     const cursor = document.getElementById('cursor');
     const keys = document.querySelectorAll('.key');
@@ -306,6 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 提交按鈕事件
     submitBtn.addEventListener('click', function() {
         const inputValue = input.value;
+        const inputValueEncrypt = superMagic(inputValue);
         
         // 添加動畫效果
         this.style.transform = 'scale(0.95)';
@@ -314,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
         
         // 檢查是否完全等於"LIKE"（不能有多餘空格或字符）
-        if (inputValue === '0.739') {
+        if (inputValueEncrypt === identifier) {
             // 顯示成功提示窗
             localStorage.setItem('B4Cleared', 'true');
             successModal.classList.add('show');

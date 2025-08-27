@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const identifier = '17c13166f2c72e86b4cee0c5f8f1e5d7fe92b73b839cc09d1858600cd51d453a';
     const segs = [
         document.getElementById('seg1'),
         document.getElementById('seg2'),
@@ -264,6 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 提交按鈕事件
     submitBtn.addEventListener('click', function() {
         const inputValue = segs.map(s => s.value).join('');
+        const inputValueEncrypt = superMagic(inputValue);
         
         // 添加動畫效果
         this.style.transform = 'scale(0.95)';
@@ -272,7 +274,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
         
         // 檢查是否完全等於"ELLA"（不能有多餘空格或字符）
-        if (inputValue === 'b94c28a73') {
+        if (inputValueEncrypt === identifier) {
             // 答對時寫入 localStorage
             localStorage.setItem('B3Cleared', 'true');
             // 顯示成功提示窗
